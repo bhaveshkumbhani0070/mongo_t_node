@@ -1,1 +1,0 @@
-# mongo_t_node
