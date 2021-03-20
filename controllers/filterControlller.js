@@ -20,7 +20,24 @@ var filterController = {};
                   $match: {
                       $expr: { $eq: ["$_id", "$$product_id"] }
                   }
-              }
+              },
+              {
+                  $lookup: {
+                      from: "company",
+                      let: {
+                          company_id: { $toObjectId: "$company" },
+                      },
+                      pipeline: [
+                          {
+                              $match: {
+                                  $expr: { $eq: ["$_id", "$$company_id"] }
+                              }
+                          }
+                      ],
+                      as: "company"
+                  }
+              },
+              { $unwind: "$company" }
           ],
           as: "Product"
       }
