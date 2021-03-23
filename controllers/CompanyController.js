@@ -70,5 +70,4 @@ companyController.delete = (req, res) => {
         }
     });
 };
-
 module.exports = companyController;
